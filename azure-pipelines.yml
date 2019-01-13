@@ -25,5 +25,4 @@ steps:
     npm run doc.shopify
     npm run doc.starwars-js
     npm run doc.starwars
-    npm run doc.scaphold
   displayName: 'npm install and compile'
