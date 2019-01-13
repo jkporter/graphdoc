@@ -17,6 +17,13 @@ steps:
 
 - script: |
     npm install
-    npm run build
+    npm run compile
     npm install -g jest
-  displayName: 'npm install and build'
+    npm prune --production
+    mkdir gh-pages
+    npm run doc.github
+    npm run doc.shopify
+    npm run doc.starwars-js
+    npm run doc.starwars
+    npm run doc.scaphold
+  displayName: 'npm install and compile'
