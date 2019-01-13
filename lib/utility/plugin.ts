@@ -17,7 +17,7 @@ import { getFilenameOf } from './introspection';
 /**
  * Plugin Base implementation
  */
-export abstract class Plugin implements PluginInterface, PluginImplementedInterface {
+export abstract class Plugin implements PluginImplementedInterface {
 
     static collect<T>(collection: T[][]): T[] {
 
@@ -33,15 +33,15 @@ export abstract class Plugin implements PluginInterface, PluginImplementedInterf
     }
 
     static async collectNavigations(plugins: PluginInterface[], buildForType?: string): Promise<NavigationSectionInterface[]> {
-        
+
         const navigationCollection = await Promise
             .all<NavigationSectionInterface[]>(plugins.map(plugin => {
                 return plugin.getNavigations ?
                     plugin.getNavigations(buildForType) :
                     null as any;
-            }))
-        
-        return Plugin.collect(navigationCollection)
+            }));
+
+        return Plugin.collect(navigationCollection);
     }
 
     static async collectDocuments(plugins: PluginInterface[], buildForType?: string): Promise<DocumentSectionInterface[]> {
@@ -50,9 +50,9 @@ export abstract class Plugin implements PluginInterface, PluginImplementedInterf
                 return plugin.getDocuments ?
                     plugin.getDocuments(buildForType) :
                     null as any;
-            }))
+            }));
 
-        return Plugin.collect(navigationCollection)
+        return Plugin.collect(navigationCollection);
     }
 
     static async collectHeaders(plugins: PluginInterface[], buildForType?: string): Promise<string[]> {
@@ -61,9 +61,9 @@ export abstract class Plugin implements PluginInterface, PluginImplementedInterf
                 return plugin.getHeaders ?
                     plugin.getHeaders(buildForType) :
                     null as any;
-            }))
+            }));
 
-        return Plugin.collect(headerCollection)
+        return Plugin.collect(headerCollection);
     }
 
     static async collectAssets(plugins: PluginInterface[]): Promise<string[]> {
@@ -73,9 +73,9 @@ export abstract class Plugin implements PluginInterface, PluginImplementedInterf
                 return plugin.getAssets ?
                     plugin.getAssets() :
                     null as any;
-            }))
+            }));
 
-        return Plugin.collect(assetCollection)
+        return Plugin.collect(assetCollection);
     }
 
     queryType: SchemaType | null = null;
