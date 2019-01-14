@@ -14,9 +14,6 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/gh-pages'
 
 - script: |
     npm install
@@ -33,4 +30,4 @@ steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'artifactName'
-    targetPath: '$(System.DefaultWorkingDirectory)/gh-pages'
+    targetPath: 'gh-pages'
