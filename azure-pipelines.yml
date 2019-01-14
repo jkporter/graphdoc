@@ -14,6 +14,9 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/gh-pages'
 
 - script: |
     npm install
@@ -26,3 +29,8 @@ steps:
     npm run doc.starwars-js
     npm run doc.starwars
   displayName: 'npm install and compile'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'artifactName'
+    targetPath: '$(System.DefaultWorkingDirectory)/gh-pages'
